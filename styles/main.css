@@ -1,0 +1,349 @@
+/* === CSS Custom Properties === */
+:root {
+  --valentine-pink: #ff69b4;
+  --valentine-red: #ff1744;
+  --valentine-deep-red: #d50000;
+  --valentine-light-pink: #ffb6c1;
+  --valentine-blush: #fff0f5;
+  --font-cheesy: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+/* === Reset & Base === */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-cheesy);
+  background: linear-gradient(135deg, var(--valentine-blush) 0%, var(--valentine-light-pink) 100%);
+  color: var(--valentine-deep-red);
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow-x: hidden;
+}
+
+/* === Main Content Layout === */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* === Typography === */
+.question {
+  font-size: clamp(1.5rem, 5vw, 4rem);
+  text-align: center;
+  color: var(--valentine-red);
+  text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.5);
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* === Button Styles === */
+.button-container {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn {
+  font-family: var(--font-cheesy);
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  padding: 1rem 2rem;
+  min-width: 120px;
+  min-height: 44px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-yes {
+  background: linear-gradient(135deg, var(--valentine-red) 0%, var(--valentine-deep-red) 100%);
+  color: white;
+  box-shadow: 0 4px 10px rgba(213, 0, 0, 0.3);
+  /* Ensure Yes button stays prominent when No button leaves flow */
+  position: relative;
+  z-index: 5;
+}
+
+.btn-yes:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(213, 0, 0, 0.5);
+}
+
+.btn-yes:focus {
+  outline: 3px solid var(--valentine-pink);
+  outline-offset: 2px;
+}
+
+.btn-no {
+  background: linear-gradient(135deg, var(--valentine-pink) 0%, var(--valentine-light-pink) 100%);
+  color: var(--valentine-deep-red);
+  box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3);
+  /* Evasion behavior styles */
+  position: fixed;
+  left: 50%;
+  top: 60%;
+  transform: translate(-50%, 0);
+  transition: transform 0.3s ease-out;
+  transform-origin: center center;
+  touch-action: none;
+  z-index: 10;
+}
+
+.btn-no:hover {
+  /* Hover transform removed - JavaScript controls transform for evasion */
+  box-shadow: 0 6px 15px rgba(255, 105, 180, 0.5);
+}
+
+.btn-no:focus {
+  outline: 3px solid var(--valentine-deep-red);
+  outline-offset: 2px;
+}
+
+/* === Hearts Container === */
+.hearts-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* === Heart Shape === */
+.heart {
+  position: absolute;
+  bottom: -50px;
+  width: 30px;
+  height: 30px;
+  background-color: var(--valentine-pink);
+  opacity: 0;
+  transform: rotate(-45deg);
+  animation: float-heart 8s ease-in-out infinite;
+}
+
+.heart::before,
+.heart::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: inherit;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -15px;
+  left: 0;
+}
+
+.heart::after {
+  top: 0;
+  left: 15px;
+}
+
+/* === Float Animation === */
+@keyframes float-heart {
+  0% {
+    opacity: 0;
+    transform: rotate(-45deg) translateY(0) scale(0.5);
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(-45deg) translateY(-100vh) scale(1);
+  }
+}
+
+/* === Stagger Heart Positions and Timing === */
+.heart:nth-child(1) {
+  left: 5%;
+  animation-delay: 0s;
+  animation-duration: 8s;
+}
+
+.heart:nth-child(2) {
+  left: 20%;
+  animation-delay: 1.5s;
+  animation-duration: 7s;
+}
+
+.heart:nth-child(3) {
+  left: 35%;
+  animation-delay: 3s;
+  animation-duration: 9s;
+}
+
+.heart:nth-child(4) {
+  left: 50%;
+  animation-delay: 0.5s;
+  animation-duration: 6s;
+}
+
+.heart:nth-child(5) {
+  left: 65%;
+  animation-delay: 2s;
+  animation-duration: 8s;
+}
+
+.heart:nth-child(6) {
+  left: 80%;
+  animation-delay: 4s;
+  animation-duration: 7s;
+}
+
+/* === Alternate Heart Colors === */
+.heart:nth-child(even) {
+  background-color: var(--valentine-red);
+}
+
+/* === Accessibility - Reduced Motion === */
+@media (prefers-reduced-motion: reduce) {
+  .heart {
+    animation: none;
+    opacity: 0.3;
+    bottom: auto;
+    top: 10%;
+  }
+
+  .heart:nth-child(2) { top: 30%; }
+  .heart:nth-child(3) { top: 50%; }
+  .heart:nth-child(4) { top: 70%; }
+  .heart:nth-child(5) { top: 20%; }
+  .heart:nth-child(6) { top: 60%; }
+}
+
+/* === Responsive - Larger Hearts on Tablet+ === */
+@media (min-width: 768px) {
+  .heart {
+    width: 40px;
+    height: 40px;
+  }
+
+  .heart::before,
+  .heart::after {
+    width: 40px;
+    height: 40px;
+  }
+
+  .heart::before {
+    top: -20px;
+  }
+
+  .heart::after {
+    left: 20px;
+  }
+}
+
+/* === Celebration Container === */
+.celebration-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  pointer-events: none;
+}
+
+.celebration-container.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.celebration-message {
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  color: white;
+  text-shadow: 3px 3px 6px var(--valentine-deep-red), 0 0 20px var(--valentine-pink);
+  font-family: var(--font-cheesy);
+  text-align: center;
+  animation: pulse-text 1s ease-in-out infinite alternate;
+}
+
+.celebration-question {
+  font-size: clamp(1.2rem, 4vw, 2.5rem);
+  color: var(--valentine-red);
+  text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.5);
+  font-family: var(--font-cheesy);
+  text-align: center;
+}
+
+@keyframes pulse-text {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
+.celebration-gif-wrapper {
+  background: white;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 40px rgba(213, 0, 0, 0.4), 0 0 0 4px var(--valentine-pink);
+}
+
+.celebration-gif {
+  display: block;
+  max-width: 70vw;
+  max-height: 40vh;
+  object-fit: contain;
+  border-radius: 0.5rem;
+}
+
+/* === Fireworks Container === */
+.fireworks-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+  pointer-events: none;
+}
+
+/* === Celebration - Reduced Motion === */
+@media (prefers-reduced-motion: reduce) {
+  .celebration-container {
+    transition: none;
+  }
+
+  .celebration-message {
+    animation: none;
+  }
+}

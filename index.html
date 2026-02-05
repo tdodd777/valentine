@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alyssa, Will You Be My Valentine?</title>
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <div class="hearts-container" aria-hidden="true">
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+  </div>
+
+  <main class="main-content">
+    <h1 class="question">Alyssa, will you be my Valentine?</h1>
+    <div class="button-container">
+      <button class="btn btn-yes">Yes</button>
+      <button class="btn btn-no">No</button>
+    </div>
+  </main>
+
+  <div class="celebration-container" aria-hidden="true">
+    <p class="celebration-message">Alyssa said YES!</p>
+    <div class="celebration-gif-wrapper">
+      <img src="assets/napoleon-yes.gif" alt="Napoleon Dynamite celebrating" class="celebration-gif">
+    </div>
+    <p class="celebration-question">Alyssa, will you be my Valentine?</p>
+  </div>
+  <div class="fireworks-container" aria-hidden="true"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fireworks-js@2.10.8/dist/index.umd.js"></script>
+  <script src="scripts/main.js"></script>
+</body>
+</html>
