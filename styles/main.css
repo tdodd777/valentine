@@ -100,7 +100,7 @@ body {
   /* Evasion behavior styles */
   position: fixed;
   left: 50%;
-  top: 60%;
+  top: calc(50% + 150px);
   transform: translate(-50%, 0);
   transition: transform 0.3s ease-out;
   transform-origin: center center;
@@ -236,6 +236,17 @@ body {
   .heart:nth-child(4) { top: 70%; }
   .heart:nth-child(5) { top: 20%; }
   .heart:nth-child(6) { top: 60%; }
+}
+
+/* === Responsive - Adjust No button on shorter screens === */
+@media (max-height: 600px) {
+  .btn-no {
+    top: calc(50% + 120px);
+  }
+
+  .question {
+    margin-bottom: 1rem;
+  }
 }
 
 /* === Responsive - Larger Hearts on Tablet+ === */
